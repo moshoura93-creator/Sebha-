@@ -13,7 +13,7 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Set up Java
-      uses: actions/setup-java@v3
+      uses: actions/setup-java@v4
       with:
         distribution: 'zulu'
         java-version: '17'
@@ -25,22 +25,13 @@ jobs:
         channel: 'stable'
         cache: true
 
-    - name: Create fresh Flutter project structure
-      run: |
-        flutter create . --org com.moshoura.sebha --project-name sebha_app --force
-
-    - name: Replace main.dart with custom code
-      run: |
-        # التأكد من وضع الكود الخاص بك في مكانه الصحيح تلقائياً
-        # (أو يمكنك التأكد من أن ملف lib/main.dart يدوياً يحتوي على الكود)
-
-    - name: Install dependencies
+    - name: Get Flutter dependencies
       run: flutter pub get
 
-    - name: Build APK
+    - name: Build Release APK
       run: flutter build apk --release
 
-    - name: Upload APK
+    - name: Upload APK Artifact
       uses: actions/upload-artifact@v4
       with:
         name: app-release
