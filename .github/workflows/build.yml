@@ -9,7 +9,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+    - name: Checkout repository
+      uses: actions/checkout@v4
 
     - name: Set up Java
       uses: actions/setup-java@v3
@@ -23,6 +24,15 @@ jobs:
         flutter-version: '3.19.0'
         channel: 'stable'
         cache: true
+
+    - name: Create fresh Flutter project structure
+      run: |
+        flutter create . --org com.moshoura.sebha --project-name sebha_app --force
+
+    - name: Replace main.dart with custom code
+      run: |
+        # التأكد من وضع الكود الخاص بك في مكانه الصحيح تلقائياً
+        # (أو يمكنك التأكد من أن ملف lib/main.dart يدوياً يحتوي على الكود)
 
     - name: Install dependencies
       run: flutter pub get
