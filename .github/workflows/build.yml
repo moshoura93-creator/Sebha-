@@ -13,7 +13,7 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Set up Java
-      uses: actions/setup-java@v3
+      uses: actions/setup-java@v4
       with:
         distribution: 'zulu'
         java-version: '17'
@@ -25,15 +25,7 @@ jobs:
         channel: 'stable'
         cache: true
 
-    - name: Create Flutter template structure
-      run: |
-        flutter create . --org com.moshoura.sebha --project-name sebha_app --force
-
-    - name: Restore main.dart and pubspec.yaml
-      run: |
-        # التأكد من بقاء ملفاتك سليمة، وflutter create سينشئ ملفات الأندرويد والجريدل المطلوبة تلقائياً
-
-    - name: Get Flutter dependencies
+    - name: Install dependencies
       run: flutter pub get
 
     - name: Build Release APK
